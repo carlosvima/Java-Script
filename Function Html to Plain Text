@@ -1,0 +1,31 @@
+/**
+ * Funcion para mostrar un mensaje con texto html en texto plano 
+ * @param {*} props.message.text 
+ * @returns options
+ */
+
+  function convertToPlainText(htmlInput) {
+    // Verifica si el argumento htmlInput es una cadena válida
+    if (typeof htmlInput === 'string') {
+      // Reemplazar <button> por salto de linea
+      var tempText = htmlInput.replace(/<button[^>]*>/g, '\n');
+  
+      // Reemplazar <br> por un salto de línea
+      tempText = tempText.replace(/<br[^>]*>/g, '\n');
+  
+      // Eliminar otras etiquetas HTML utilizando una expresión regular
+      var plainText = tempText.replace(/<[^>]+>/g, '');
+      
+      return plainText;
+    } else {
+      // Si htmlInput no es una cadena válida, regresar una cadena vacía
+      return '';
+    }
+  }
+
+let options = '';
+
+if(props.message.mediaType == 'options'){
+  options=convertToPlainText(props.message.text)
+
+}
